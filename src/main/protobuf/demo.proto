@@ -1,0 +1,14 @@
+syntax = "proto2";
+
+package mypkg;
+
+import "validate/validate.proto";
+
+message Demo {
+    optional int32 positive_int = 1 [(validate.rules).int32 = { gt: 0}];
+    optional int32 at_least_4 = 2 [(validate.rules).int32 = { gte: 4}];
+}
+
+message NonEmpty {
+    repeated Demo demos = 1 [(validate.rules).repeated.min_items = 1];
+}

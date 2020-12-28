@@ -1,0 +1,27 @@
+syntax = "proto2";
+
+package mypkg;
+
+import "scalapb/scalapb.proto";
+import "scalapb/validate.proto";
+import "validate/validate.proto";
+
+option (scalapb.options) = {
+  preprocessors: ["scalapb-validate-preprocessor"]
+  scope: PACKAGE
+  [scalapb.validate.file] {
+    validate_at_construction: true
+  }
+};
+
+option (scalapb.validate.package) = {
+  cats_transforms: true
+  field_transformations: [
+    {
+      when: {int32: {gt: 0}}
+      set: {
+        type: "mypkg.PositiveInt"
+      }
+    }
+  ]
+};
