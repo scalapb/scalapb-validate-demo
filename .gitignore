@@ -3,3 +3,4 @@
 .bloop
 *.class
 target/
+metals.sbt

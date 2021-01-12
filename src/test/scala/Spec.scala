@@ -1,6 +1,7 @@
 import cats.data.NonEmptyList
 import mypkg.demo.{Demo, NonEmpty}
 import mypkg.PositiveInt
+import scalapb.validate.ValidationException
 
 class Spec extends munit.FunSuite {
   test("PositiveInt") {
@@ -10,14 +11,14 @@ class Spec extends munit.FunSuite {
     )
 
     assert(
-      intercept[IllegalArgumentException](
+      intercept[ValidationException](
         Demo(Some(PositiveInt(-7)))
       ).getMessage
         .contains("Demo.positive_int: -7 must be greater than 0")
     )
 
     assert(
-      intercept[IllegalArgumentException](Demo(atLeast4 = Some(-3))).getMessage
+      intercept[ValidationException](Demo(atLeast4 = Some(-3))).getMessage
         .contains("Demo.at_least_4: -3 must be greater than or equal to 4")
     )
   }
