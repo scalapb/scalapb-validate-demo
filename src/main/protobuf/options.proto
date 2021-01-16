@@ -12,16 +12,16 @@ option (scalapb.options) = {
   [scalapb.validate.file] {
     validate_at_construction: true
   }
-};
-
-option (scalapb.validate.package) = {
-  cats_transforms: true
   field_transformations: [
     {
-      when: {int32: {gt: 0}}
+      when: {[validate.rules] {int32: {gt: 0}}}
       set: {
         type: "mypkg.PositiveInt"
       }
     }
   ]
+};
+
+option (scalapb.validate.package) = {
+  cats_transforms: true
 };
