@@ -11,6 +11,7 @@ option (scalapb.options) = {
   scope: PACKAGE
   [scalapb.validate.file] {
     validate_at_construction: true
+    cats_transforms: true
   }
   field_transformations: [
     {
@@ -20,8 +21,4 @@ option (scalapb.options) = {
       }
     }
   ]
-};
-
-option (scalapb.validate.package) = {
-  cats_transforms: true
 };
