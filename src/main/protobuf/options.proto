@@ -15,9 +15,11 @@ option (scalapb.options) = {
   }
   field_transformations: [
     {
-      when: {[validate.rules] {int32: {gt: 0}}}
+      when: {options: {[validate.rules] {int32: {gt: 0}}}}
       set: {
-        type: "mypkg.PositiveInt"
+        [scalapb.field] {
+          type: "mypkg.PositiveInt"
+        }
       }
     }
   ]
