@@ -1,9 +1,9 @@
 scalaVersion := "2.13.4"
 
-PB.targets in Compile := Seq(
-  scalapb.validate.preprocessor() -> (sourceManaged in Compile).value / "scalapb",
-  scalapb.gen() -> (sourceManaged in Compile).value / "scalapb",
-  scalapb.validate.gen() -> (sourceManaged in Compile).value / "scalapb"
+Compile / PB.targets := Seq(
+  scalapb.validate.preprocessor() -> (Compile / sourceManaged).value / "scalapb",
+  scalapb.gen() -> (Compile / sourceManaged).value / "scalapb",
+  scalapb.validate.gen() -> (Compile / sourceManaged).value / "scalapb"
 )
 
 libraryDependencies ++= Seq(
